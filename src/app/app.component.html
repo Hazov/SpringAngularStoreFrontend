@@ -1,0 +1,33 @@
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+      <a class="navbar-brand" href="#">Белая Ворона</a>
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Главная</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink= "products" >Товары</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link"  tabindex="-1" aria-disabled="true">Услуги</a>
+        </li>
+      </ul>
+      <form class="d-flex">
+        <a class="nav-link active" aria-current="page" routerLink="editProduct">Редактирование</a>
+        <a class="nav-link active" aria-current="page" routerLink="cart">Корзина</a>
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Поиск</button>
+        <a class="nav-link active" aria-current="page" routerLink="auth">Войти/регистрация</a>
+      </form>
+    </div>
+  </div>
+</nav>
+<div class = "container">
+  <router-outlet></router-outlet>
+</div>
+</body>
