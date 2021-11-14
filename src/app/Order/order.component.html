@@ -1,0 +1,41 @@
+<body>
+<div class="container">
+  <div class="row">
+    <table class="table">
+      <thead>
+      <tr>
+        <th scope="col">Наименование</th>
+        <th scope="col">Цена (р)</th>
+        <th scope="col">Количество</th>
+        <th scope="col">Сумма</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let item of items let i = index">
+        <td>{{item.name}}</td>
+        <td>{{item.price}}</td>
+        <td>{{item.countSelected}}</td>
+        <td>{{item.summedPrice}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="row">
+  <div class = "col-4">
+    <h4>Выберите адрес</h4>
+    <button *ngIf="checkActionAndAddressExist()" type="button" class="btn btn-lg btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    </button>
+    <div *ngIf="checkActionAndAddressExist" class="dropdown-menu">
+      <button  *ngIf="checkInvisibilityAddressField()" class="list-group-item list-group-item-action" (click) = "addAddress()" >(Добавить новый адрес)</button>
+      <div *ngFor="let nothing of addresses let i = index">
+        <button class="list-group-item list-group-item-action" (click) = "chooseAddress(addresses[i+1])" >{{addresses[i+1]}}</button>
+    </div>
+  </div>
+    <form #createOrder="ngForm" class="needs-validation" novalidate>
+      <input *ngIf="checkInvisibilityButtonCreate()" id="currentAddressField"
+             type="text" class="form-control" name="count" [(ngModel)]="currentAddress" placeholder="Введите адрес:" required>
+    </form>
+</div>
+</div>
+</body>

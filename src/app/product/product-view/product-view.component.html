@@ -1,0 +1,46 @@
+<body>
+<div class = "card">
+  <div class = "card-image">
+    <img class = "productImage" src="../../../assets/images/products/i1.jpg">
+  </div>
+  <div class="card-body">
+    <p>{{prod.name}}</p>
+    <div class = "row">
+      <div class = "col-6">
+        <p>Цена   {{prod.price}}</p>
+      </div>
+      <div class = "col-6">
+        <button class = "btn btn-info" data-toggle="modal" [attr.data-target]="'#productModal'+ count">Купить</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade gr" id= "productModal{{count}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="alert alert-success" role="alert">
+          {{prod.name}}
+        </div>
+        <button type="button" data-dismiss = "modal" class="btn-close btn-close-white" aria-label="Close">
+        </button>
+      </div>
+      <div class="modal-body">
+        {{prod.description}}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Отказ</button>
+        <button type="button" class="btn btn-info" (click)="buyProduct(prod)" data-dismiss="modal">Купить</button>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+
+
+
+
+
+

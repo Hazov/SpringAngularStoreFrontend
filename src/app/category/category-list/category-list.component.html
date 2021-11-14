@@ -1,0 +1,8 @@
+ <body>
+<div  class="list-group" role="tablist">
+     <button  class="list-group-item list-group-item-action" (click) = "chooseCategory()" >Все товары</button>
+      <div *ngFor="let cat of categories">
+        <button  class="list-group-item list-group-item-action" (click) = "chooseCategory(cat.name)" >{{cat.name}}</button>
+      </div>
+</div>
+ </body>

@@ -1,0 +1,33 @@
+<body>
+<div class="row">
+  <div class="col-3">
+    <app-category-list></app-category-list>
+  </div>
+  <div class="col-9">
+    <div class = "container">
+      <div class = "row">
+        <div class = "col-4" *ngFor="let prod of products; let i = index" >
+          <app-product-view [prod]="prod" [count] = "i"></app-product-view>
+        </div>
+      </div>
+    </div>
+
+
+    <!--    <nav aria-label="...">-->
+    <!--      <ul  class="pagination pagination-lg">-->
+    <!--        <li *ngFor="let page of pagesNumbers"  class="page-item">-->
+    <!--          <a [attr.id]=page+1 class="page-link"  tabindex="-1">{{page+1}}</a>-->
+    <!--        </li>-->
+    <!--      </ul>-->
+    <!--    </nav>-->
+
+
+    <app-product-pagination [pages] = "pagesNumbers"></app-product-pagination>
+  </div>
+</div>
+</body>
+
+
+
+
+

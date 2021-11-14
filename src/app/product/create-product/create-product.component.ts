@@ -1,0 +1,68 @@
+import { Component, OnInit } from '@angular/core';
+import {Category} from '../../category/category';
+import {CategoryService} from '../../category/category.service';
+import {NgForm} from '@angular/forms';
+import {Product} from '../product';
+import {ProductService} from '../product.service';
+
+@Component({
+  selector: 'app-create-product',
+  templateUrl: './create-product.component.html',
+  styleUrls: ['./create-product.component.css']
+})
+export class CreateProductComponent implements OnInit {
+  categories: Category[];
+  products: Product[];
+  productToDelete: Product;
+
+  article: string;
+  name: string;
+  price: number;
+  description: string;
+  count: number;
+  category: Category
+
+  constructor(private categoryService: CategoryService, private productService: ProductService) {
+  }
+
+  ngOnInit(): void {
+    this.getCategories();
+    //this.getProducts();
+
+  }
+
+  getCategories() {
+    this.categoryService.getAllCategories().subscribe(data => {this.categories = data});
+  }
+
+  changeCategory(cat) {
+    this.category = cat;
+    document.getElementById("dropdownMenuButton").innerText = this.category.name;
+
+  }
+
+  onSubmit(form: NgForm) {
+    let newProduct: Product = new Product(this.article, this.name, this.description, this.price, this.category, this.count, null);
+    form.reset()
+    this.productService.createProduct(newProduct).subscribe(data => this.ngOnInit());
+  }
+
+  // private getProducts() {
+  //   this.productService.getAllProducts().subscribe(data => {
+  //     this.products = data
+  //   });
+  // }
+
+  changeProductToRemove(prod) {
+    this.productToDelete = prod;
+    document.getElementById("dropDownProductMenuButton").innerText =
+      this.productToDelete.name + "     " + this.productToDelete.price + " руб";
+
+  }
+
+  removeFromList(form: NgForm) {
+    this.productService.removeProduct(this.productToDelete).subscribe(data => this.ngOnInit());
+    form.reset();
+
+  }
+}

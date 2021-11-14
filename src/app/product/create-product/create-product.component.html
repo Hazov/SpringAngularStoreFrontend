@@ -1,0 +1,87 @@
+<body>
+<div class="row">
+
+  <div class="col-6">
+    <h1>Создать новый товар</h1>
+    <form #createFormProduct="ngForm" class="needs-validation" novalidate>
+      <div class="form-row form-group">
+        <div class="col-md-6 mb-3">
+          <label>Артикул</label>
+          <input type="text" class="form-control" name="article" [(ngModel)]="article"  placeholder="Артикул товара" required>
+          <div class="valid-feedback">
+            Looks good!
+          </div>
+        </div>
+        <div class="col-md-4 mb-3">
+          <label>Наименование</label>
+          <input type="text" class="form-control" name="name" [(ngModel)]="name"  placeholder="Наименование товара" required>
+          <div class="valid-feedback">
+            Looks good!
+          </div>
+        </div>
+        <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Выбор категории
+          </button>
+          <div  class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a *ngFor="let cat of categories" (click)="changeCategory(cat)" class="dropdown-item">{{cat.name}}</a>
+          </div>
+        </div>
+
+      </div>
+      <div class="col-md-4 mb-3">
+        <label>Стоимость</label>
+        <input type="text" class="form-control" name="price" [(ngModel)]="price" placeholder="Стоимость товара"  required>
+        <div class="valid-feedback">
+          Looks good!
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Описание товара</label>
+        <textarea class="form-control" name="description" [(ngModel)]="description" rows="3"></textarea>
+      </div>
+      <div class="col-md-4 mb-3">
+        <label>Остаток</label>
+        <input type="text" class="form-control" name="count" [(ngModel)]="count" placeholder="Остаток товара на складе" required>
+        <div class="valid-feedback">
+          Looks good!
+        </div>
+      </div>
+
+      <button class="btn btn-primary" type="submit" (click)="onSubmit(createFormProduct)">Создать товар</button>
+    </form>
+  </div>
+  <div class="col-6">
+    <h1>Удалить товар</h1>
+    <form #deleteProductForm = "ngForm" class="needs-validation" novalidate>
+      <div class="form-row form-group">
+        <div class="col-md-6 mb-3">
+          <input type="text" class="form-control" name="article" [(ngModel)]="article"  placeholder="По названию" required>
+        </div>
+        <div class="col-md-6 mb-3">
+          <button class="btn btn-danger" type="submit" (click)="onSubmit(createFormProduct)">Удалить товар</button>
+        </div>
+      </div>
+      <div class="form-row form-group">
+        <div class="col-md-6 mb-3">
+          <div class="btn-group">
+            <button type="button" class="btn btn-secondary dropdown-toggle"  data-toggle="dropdown" aria-expanded="false" id="dropDownProductMenuButton">
+              Поиск по списку товаров
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end dropdown" >
+              <button *ngFor="let prod of products" (click)="changeProductToRemove(prod)" class="dropdown-item" type="button">{{prod.name}}     {{prod.price}} руб.</button>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-6 mb-3">
+          <button class="btn btn-danger" type="submit" (click)="removeFromList(deleteProductForm)">Удалить товар</button>
+        </div>
+      </div>
+
+    </form>
+  </div>
+</div>
+</body>
+
+
+

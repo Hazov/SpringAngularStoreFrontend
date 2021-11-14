@@ -1,0 +1,96 @@
+<div class="text-center" style="padding:50px 0">
+  <div class="logo">Вход</div>
+  <!-- Main Form -->
+  <div class="login-form-1">
+    <form id="login-form" class="text-left">
+      <div class="login-form-main-message"></div>
+      <div class="main-login-form">
+        <div class="login-group">
+          <div class="form-group">
+            <label for="lg_username" class="sr-only">Username</label>
+            <input [(ngModel)]="username" type="text" class="form-control" id="lg_username" name="lg_username" placeholder="Имя пользователя">
+          </div>
+          <div class="form-group">
+            <label for="lg_password" class="sr-only">Password</label>
+            <input [(ngModel)]="password" type="password" class="form-control" id="lg_password" name="lg_password" placeholder="Пароль">
+          </div>
+          <div class="form-group login-group-checkbox">
+            <input type="checkbox" id="lg_remember" name="lg_remember">
+          </div>
+        </div>
+        <button (click)="authorize(username, password)" type="submit" class="login-button"><i class="fa fa-chevron-right"></i></button>
+      </div>
+      <div class="etc-login-form">
+        <p>Забыли пароль? <a href="#">Нажмите сюда</a></p>
+        <p>Впервые? <a href="#">Зарегистрируйтесь</a></p>
+      </div>
+    </form>
+  </div>
+  <!-- end:Main Form -->
+</div>
+
+<!-- REGISTRATION FORM -->
+<div class="text-center" style="padding:50px 0">
+  <div class="logo">Регистрация</div>
+  <!-- Main Form -->
+  <div class="login-form-1">
+    <form id="register-form" class="text-left">
+      <div class="login-form-main-message"></div>
+      <div class="main-login-form">
+        <div class="login-group">
+          <div class="form-group">
+            <label for="reg_username" class="sr-only">Username</label>
+            <input [(ngModel)]="regUsername" type="text" class="form-control" id="reg_username" name="reg_username" placeholder="Имя пользователя">
+          </div>
+          <div class="form-group">
+            <label for="reg_password" class="sr-only">Password</label>
+            <input [(ngModel)]="regPassword" type="password" class="form-control" id="reg_password" name="reg_password" placeholder="Пароль">
+          </div>
+          <div class="form-group">
+            <label for="reg_password_confirm" class="sr-only">Password Confirm</label>
+            <input [(ngModel)]="regPasswordConfirm" type="password" class="form-control" id="reg_password_confirm" name="reg_password_confirm" placeholder="Подтвердить пароль">
+          </div>
+
+          <div class="form-group">
+            <label for="reg_email" class="sr-only">Email</label>
+            <input [(ngModel)]="regEmail" type="text" class="form-control" id="reg_email" name="reg_email" placeholder="Email">
+          </div>
+
+        </div>
+        <button (click)="authanticate(regUsername, regPassword, regPasswordConfirm, regEmail)" type="submit" class="login-button"><i class="fa fa-chevron-right"></i></button>
+      </div>
+      <div class="etc-login-form">
+        <p>Уже зарегистрированы? <a href="#">Войдите</a></p>
+      </div>
+    </form>
+  </div>
+  <!-- end:Main Form -->
+</div>
+
+<!-- FORGOT PASSWORD FORM -->
+<div class="text-center" style="padding:50px 0">
+  <div class="logo">Забыли пароль</div>
+  <!-- Main Form -->
+  <div class="login-form-1">
+    <form id="forgot-password-form" class="text-left">
+      <div class="etc-login-form">
+        <p>Введите Email адрес, на него придет ссылка для сброса пароля</p>
+      </div>
+      <div class="login-form-main-message"></div>
+      <div class="main-login-form">
+        <div class="login-group">
+          <div class="form-group">
+            <label for="fp_email" class="sr-only">Email</label>
+            <input [(ngModel)]="fpEmail" type="text" class="form-control" id="fp_email" name="fp_email" placeholder="Email">
+          </div>
+        </div>
+        <button (click)="forgotPassword(fpEmail)" type="submit" class="login-button"><i class="fa fa-chevron-right"></i></button>
+      </div>
+      <div class="etc-login-form">
+        <p>Зарегистрированы?  <a href="#">Войдите</a></p>
+        <p>Впервые? <a href="#">Зарегистрируйтесь</a></p>
+      </div>
+    </form>
+  </div>
+  <!-- end:Main Form -->
+</div>
