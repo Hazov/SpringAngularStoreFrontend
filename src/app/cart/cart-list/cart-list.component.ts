@@ -16,7 +16,7 @@ export class CartListComponent implements OnInit {
   constructor(private cartService: CartService) {
   }
 
-  ngOnInit(): void {  //TODO query backend!
+  ngOnInit(): void {  //TODO query backend! Порядок в корзине должен быть на бэкэнде.
     let map = new Map<number, Product>();         //Map<product.id, product>
     this.cartService.getProductsFromCart().subscribe(data => {
       data.products.forEach(prod => {

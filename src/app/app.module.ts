@@ -12,7 +12,7 @@ import { CategoryListComponent } from './category/category-list/category-list.co
 
 import { CreateProductComponent } from './product/create-product/create-product.component';
 import {FormsModule} from '@angular/forms';
-import { CartListComponent } from './Cart/cart-list/cart-list.component';
+import { CartListComponent } from './cart/cart-list/cart-list.component';
 import { AuthComponent } from './auth/auth.component';
 import {TokenInterceptor} from './auth/TokenInterceptor';
 import {JwtErrorInterceptor} from './auth/JwtErrorInterceptor';

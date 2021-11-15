@@ -1,0 +1,45 @@
+<body>
+<div class="container">
+  <div class="row">
+    <table class="table">
+      <thead>
+      <tr>
+        <th scope="col">Наименование</th>
+        <th scope="col">Цена (р)</th>
+        <th scope="col">Количество</th>
+        <th scope="col">Сумма</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let item of items let i = index">
+        <td>{{item.name}}</td>
+        <td>{{item.price}}</td>
+        <td>{{item.countSelected}}</td>
+        <td>{{item.summedPrice}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="row">
+  <div class = "col-6">
+    <h4>Выберите адрес</h4>
+    <button type="button" class="btn btn-lg btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    {{currentAddress}}</button>
+    <div class="dropdown-menu">
+      <button  class="list-group-item list-group-item-action" (click) = "showAddAddressForm()" >(Добавить новый адрес)</button>
+      <div  *ngFor="let nothing of addresses let i = index">
+        <button class="list-group-item list-group-item-action" (click) = "chooseAddress(addresses[i])">{{addresses[i]}}</button>
+    </div>
+  </div>
+
+</div>
+  <div class = "col-6">
+    <form *ngIf="visibleCreateAddressForm" #createAddress="ngForm" class="needs-validation" novalidate>
+      <input  id="currentAddressField" [(ngModel)] = "addressStr"
+             type="text" class="form-control" name="count" placeholder="Введите адрес:" required>
+      <a class="btn btn-primary btn-lg" role="button" aria-disabled="true" (click) = "addAddress(addressStr)">Добавить адрес</a>
+    </form>
+  </div>
+</div>
+</body>

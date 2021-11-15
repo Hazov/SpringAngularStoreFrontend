@@ -1,6 +1,6 @@
 import {Product} from '../product/product';
 import {Feedback} from '../feedback/feedback';
-import {Cart} from '../Cart/cart';
+import {Cart} from '../cart/cart';
 
 export class User{
    private _name: string;
