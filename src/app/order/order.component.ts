@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Product} from '../product/product';
 import {OrderService} from './order.service';
 import {AddressService} from '../address/address.service';
+import {NgForm} from '@angular/forms';
 
 @Component({
   selector: 'app-order',
@@ -48,10 +49,22 @@ export class OrderComponent implements OnInit {
     this.visibleCreateAddressForm = false;
   }
 
-  addAddress(address: string) {
+  addAddress(address: string, createAddressForm: NgForm) {
+    createAddressForm.resetForm();
     this.hideAddAddressForm();
     this.addressService.addAddress(address).subscribe(data => {
       this.addresses = data;
     });
+  }
+
+  onSubmit(createOrderForm: NgForm) {
+
+    createOrderForm.resetForm();
+  }
+
+  showCurrentAddress():string {
+    if(this.currentAddress === undefined)
+      return "Укажите адрес"
+    return this.currentAddress;
   }
 }

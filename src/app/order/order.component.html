@@ -22,24 +22,36 @@
   </div>
 </div>
 <div class="row">
-  <div class = "col-6">
-    <h4>Выберите адрес</h4>
-    <button type="button" class="btn btn-lg btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    {{currentAddress}}</button>
-    <div class="dropdown-menu">
-      <button  class="list-group-item list-group-item-action" (click) = "showAddAddressForm()" >(Добавить новый адрес)</button>
-      <div  *ngFor="let nothing of addresses let i = index">
-        <button class="list-group-item list-group-item-action" (click) = "chooseAddress(addresses[i])">{{addresses[i]}}</button>
-    </div>
+  <div class="col-6">
+    <form #createOrder="ngForm">
+      <h4>Выберите адрес</h4>
+      <button type="button" class="btn btn-lg btn-secondary dropdown-toggle dropdown-toggle-split"
+              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{showCurrentAddress()}}</button>
+      <div class="dropdown-menu">
+        <button class="list-group-item list-group-item-action" (click)="showAddAddressForm()">(Добавить новый адрес)
+        </button>
+        <div *ngFor="let nothing of addresses let i = index">
+          <button class="list-group-item list-group-item-action"
+                  (click)="chooseAddress(addresses[i])">{{addresses[i]}}</button>
+        </div>
+      </div>
+      <br>
+      <input type="text" class="form-control bfh-phone" data-format="+1 (ddd) ddd-dddd">
+      <a class="btn btn-primary btn-lg" role="button" aria-disabled="true" (click)="onSubmit(createOrder)">ЗАКАЗАТЬ</a>
+    </form>
   </div>
-
-</div>
-  <div class = "col-6">
+  <div class="col-6">
+<!--    (hide) create address form-->
     <form *ngIf="visibleCreateAddressForm" #createAddress="ngForm" class="needs-validation" novalidate>
-      <input  id="currentAddressField" [(ngModel)] = "addressStr"
+      <input id="currentAddressField" [(ngModel)]="addressStr"
              type="text" class="form-control" name="count" placeholder="Введите адрес:" required>
-      <a class="btn btn-primary btn-lg" role="button" aria-disabled="true" (click) = "addAddress(addressStr)">Добавить адрес</a>
+      <a class="btn btn-primary btn-lg" role="button" aria-disabled="true" (click)="addAddress(addressStr, createAddress)">Добавить
+        адрес</a>
     </form>
   </div>
 </div>
 </body>
+
+
+
+
