@@ -16,6 +16,7 @@ export class OrderComponent implements OnInit {
   currentAddress: any;
   visibleCreateAddressForm: boolean;
   addressStr: string;
+  phoneNumber: string;
 
   constructor(private orderService: OrderService, private addressService: AddressService) {
     this.visibleCreateAddressForm = false;

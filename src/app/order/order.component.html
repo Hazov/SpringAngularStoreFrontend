@@ -35,8 +35,8 @@
                   (click)="chooseAddress(addresses[i])">{{addresses[i]}}</button>
         </div>
       </div>
-      <br>
-      <input type="text" class="form-control bfh-phone" data-format="+1 (ddd) ddd-dddd">
+      <br><br>
+      <p>+7<input [(ngModel)]="phoneNumber" type="text" class="bfh-phone" data-format="(ddd) ddd-dddd"></p>
       <a class="btn btn-primary btn-lg" role="button" aria-disabled="true" (click)="onSubmit(createOrder)">ЗАКАЗАТЬ</a>
     </form>
   </div>
