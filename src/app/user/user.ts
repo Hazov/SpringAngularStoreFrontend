@@ -1,4 +1,4 @@
-import {Product} from '../product/product';
+import {SortedProduct} from '../product/SortedProduct';
 import {Feedback} from '../feedback/feedback';
 import {Cart} from '../cart/cart';
 
@@ -6,7 +6,7 @@ export class User{
    private _name: string;
    private _avatar: string;
    private _cart: Cart;
-   private _favourite: Product[];
+   private _favourite: SortedProduct[];
    private _reviews: Feedback[];
    private _token?: string;
 
@@ -19,7 +19,7 @@ export class User{
   get cart(): Cart {
     return this._cart;
   }
-  get favourite(): Product[] {
+  get favourite(): SortedProduct[] {
     return this._favourite;
   }
   get reviews(): Feedback[] {

@@ -1,6 +1,10 @@
 import {Component, OnInit, NgZone, ChangeDetectorRef} from '@angular/core';
-import {Product} from '../../product/product';
+import {SortedProduct} from '../../product/SortedProduct';
 import {CartService} from '../cart.service';
+import {Cart} from '../cart';
+import {Product} from '../../product/Product';
+
+
 
 
 @Component({
@@ -9,54 +13,45 @@ import {CartService} from '../cart.service';
   styleUrls: ['./cart-list.component.css']
 })
 export class CartListComponent implements OnInit {
-  items: Product[];
+  products: SortedProduct[];
+  cart: Cart;
   totalPrice:number;
-
 
   constructor(private cartService: CartService) {
   }
 
-  ngOnInit(): void {  //TODO query backend! Порядок в корзине должен быть на бэкэнде.
-    let map = new Map<number, Product>();         //Map<product.id, product>
-    this.cartService.getProductsFromCart().subscribe(data => {
-      data.products.forEach(prod => {
-        if (!map.has(prod.id)) {
-          prod.countSelected= 1;
-        } else {
-          let countSelected = map.get(prod.id).countSelected;
-          prod.countSelected = ++countSelected
-        }
-        map.set(prod.id, prod);
+  ngOnInit(): void {
+    this.refreshCart();
+
+  }
+
+  deleteFromCart(sortedProduct: SortedProduct) {
+    let product = new Product(sortedProduct);
+      this.cartService.deleteProductFromCart(product).subscribe(cart => {
+        this.products = cart.sortedProducts;
+        this.totalPrice = cart.totalPrice;
       });
-      this.items = new Array(map.size);
-      let i = 0;
-      this.totalPrice = 0;
-      map.forEach((productValue, productIdKey) => {
-        productValue.summedPrice = productValue.price*productValue.countSelected;
-        this.items[i++] = productValue;
-        this.totalPrice += productValue.summedPrice;
-      })
+  }
+
+  decrementProduct(sortedProduct: SortedProduct) {
+    let product = new Product(sortedProduct);
+      this.cartService.decrementFromCart(product).subscribe(cart => {
+        this.products = cart.sortedProducts;
+        this.totalPrice = cart.totalPrice;
+      });
+  }
+
+  incrementProduct(sortedProduct: SortedProduct) {
+    let product = new Product(sortedProduct);
+    this.cartService.incrementFromCart(product).subscribe(cart=>{
+      this.products = cart.sortedProducts;
+      this.totalPrice = cart.totalPrice;
     });
   }
-
-  deleteFromCart(item: Product) {
-      this.cartService.deleteProductFromCart(item).subscribe(cart => {
-        this.ngOnInit()
-      });
-  }
-
-  decrementProduct(item: Product) {
-    if(item.countSelected<=0) item.countSelected=1
-    if(item.countSelected>1) {
-      this.cartService.decrementFromCart(item).subscribe(() => {
-        this.ngOnInit()
-      });
-    }
-  }
-
-  incrementProduct(item: Product) {
-    this.cartService.incrementFromCart(item).subscribe(()=>{
-        this.ngOnInit()
+  refreshCart(){
+    this.cartService.getProductsFromCart().subscribe(cart => {
+      this.products = cart.sortedProducts;
+      this.totalPrice = cart.totalPrice;
     });
   }
 

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Category} from '../../category/category';
 import {CategoryService} from '../../category/category.service';
 import {NgForm} from '@angular/forms';
-import {Product} from '../product';
+import {SortedProduct} from '../SortedProduct';
 import {ProductService} from '../product.service';
 
 @Component({
@@ -12,8 +12,8 @@ import {ProductService} from '../product.service';
 })
 export class CreateProductComponent implements OnInit {
   categories: Category[];
-  products: Product[];
-  productToDelete: Product;
+  products: SortedProduct[];
+  productToDelete: SortedProduct;
 
   article: string;
   name: string;
@@ -42,9 +42,9 @@ export class CreateProductComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
-    let newProduct: Product = new Product(this.article, this.name, this.description, this.price, this.category, this.count, null);
-    form.reset()
-    this.productService.createProduct(newProduct).subscribe(data => this.ngOnInit());
+    // let newProduct: eeProduct = new eeProduct(this.article, this.name, this.description, this.price, this.category, this.count, null);
+    // form.reset()
+    // this.productService.createProduct(newProduct).subscribe(data => this.ngOnInit());
   }
 
   // private getProducts() {

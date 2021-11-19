@@ -1,7 +1,7 @@
-import {Product} from '../product/product';
+import {SortedProduct} from '../product/SortedProduct';
 
 export class Cart{
-  id: number;
-  products: Product[];
+  sortedProducts: SortedProduct[];
+   totalPrice: number;
 
 }

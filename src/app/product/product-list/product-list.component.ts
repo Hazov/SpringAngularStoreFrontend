@@ -1,5 +1,5 @@
 import {Component, Injectable, Input, OnInit, ViewChild} from '@angular/core';
-import {Product} from '../product';
+import {SortedProduct} from '../SortedProduct';
 import {ProductService} from '../product.service';
 import {Category} from '../../category/category';
 import {CategoryService} from '../../category/category.service';
@@ -17,7 +17,7 @@ import {CategoryListComponent} from '../../category/category-list/category-list.
 })
 export class ProductListComponent implements OnInit {
   categories: Category[];
-  products: Product[];
+  products: SortedProduct[];
   tabs: number;
   pagesNumbers: number[];
   currentCategory: string;

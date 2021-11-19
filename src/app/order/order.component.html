@@ -1,51 +1,61 @@
 <body>
 <div class="container">
   <div class="row">
-    <table class="table">
-      <thead>
-      <tr>
-        <th scope="col">Наименование</th>
-        <th scope="col">Цена (р)</th>
-        <th scope="col">Количество</th>
-        <th scope="col">Сумма</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor="let item of items let i = index">
-        <td>{{item.name}}</td>
-        <td>{{item.price}}</td>
-        <td>{{item.countSelected}}</td>
-        <td>{{item.summedPrice}}</td>
-      </tr>
-      </tbody>
-    </table>
+     <table class="table">
+       <thead>
+       <tr>
+         <th scope="col">Наименование</th>
+         <th scope="col">Цена (р)</th>
+         <th scope="col">Количество</th>
+         <th scope="col">Сумма</th>
+       </tr>
+       </thead>
+       <tbody>
+       <tr *ngFor="let product of products let i = index">
+         <td>{{product.name}}</td>
+         <td>{{product.price}}</td>
+         <td>{{product.countSelected}}</td>
+         <td>{{product.amount}}</td>
+       </tr>
+       </tbody>
+     </table>
+    <div class = "col-10">
+   </div>
+    <div class = "col-2">
+      Итого к оплате: {{totalPrice}}
+    </div>
+
   </div>
 </div>
 <div class="row">
   <div class="col-6">
-    <form #createOrder="ngForm">
+    <form #createOrderForm="ngForm">
       <h4>Выберите адрес</h4>
       <button type="button" class="btn btn-lg btn-secondary dropdown-toggle dropdown-toggle-split"
               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{showCurrentAddress()}}</button>
       <div class="dropdown-menu">
         <button class="list-group-item list-group-item-action" (click)="showAddAddressForm()">(Добавить новый адрес)
         </button>
-        <div *ngFor="let nothing of addresses let i = index">
+        <div *ngFor="let address of addresses">
           <button class="list-group-item list-group-item-action"
-                  (click)="chooseAddress(addresses[i])">{{addresses[i]}}</button>
+                  (click)="chooseAddress(address)">{{address}}</button>
         </div>
       </div>
       <br><br>
-      <p>+7<input [(ngModel)]="phoneNumber" type="text" class="bfh-phone" data-format="(ddd) ddd-dddd"></p>
-      <a class="btn btn-primary btn-lg" role="button" aria-disabled="true" (click)="onSubmit(createOrder)">ЗАКАЗАТЬ</a>
+      +7<input type="text" class="bfh-phone" [(ngModel)]="phoneNumber" name="phoneNumber">
+      <a class="btn btn-primary btn-lg" role="button" aria-disabled="true" (click)="createOrder(createOrderForm)">ЗАКАЗАТЬ</a>
     </form>
   </div>
   <div class="col-6">
-<!--    (hide) create address form-->
+
+
+
+    <!--    (hide) create address form-->
     <form *ngIf="visibleCreateAddressForm" #createAddress="ngForm" class="needs-validation" novalidate>
       <input id="currentAddressField" [(ngModel)]="addressStr"
-             type="text" class="form-control" name="count" placeholder="Введите адрес:" required>
-      <a class="btn btn-primary btn-lg" role="button" aria-disabled="true" (click)="addAddress(addressStr, createAddress)">Добавить
+             type="text" class="form-control" name="addressStr" placeholder="Введите адрес:" required>
+      <a class="btn btn-primary btn-lg" role="button" aria-disabled="true"
+         (click)="addAddress(addressStr, createAddress)">Добавить
         адрес</a>
     </form>
   </div>

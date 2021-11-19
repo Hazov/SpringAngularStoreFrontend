@@ -1,8 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {Product} from '../product/product';
+import {SortedProduct} from '../product/SortedProduct';
 import {OrderService} from './order.service';
 import {AddressService} from '../address/address.service';
 import {NgForm} from '@angular/forms';
+import {CartService} from '../cart/cart.service';
+
 
 @Component({
   selector: 'app-order',
@@ -10,7 +12,8 @@ import {NgForm} from '@angular/forms';
   styleUrls: ['./order.component.css']
 })
 export class OrderComponent implements OnInit {
-  items: Product[];
+  products: SortedProduct[];
+  totalPrice: number;
   addresses: string[];
   visibilityCurrentAddressField: boolean;
   currentAddress: any;
@@ -18,7 +21,7 @@ export class OrderComponent implements OnInit {
   addressStr: string;
   phoneNumber: string;
 
-  constructor(private orderService: OrderService, private addressService: AddressService) {
+  constructor(private orderService: OrderService, private addressService: AddressService, private cartService:CartService) {
     this.visibleCreateAddressForm = false;
   }
 
@@ -28,8 +31,9 @@ export class OrderComponent implements OnInit {
   }
 
   getProductsFromCart() {
-    this.orderService.getProductsFromCart().subscribe(data => {
-      this.items = data.products;
+    this.cartService.getProductsFromCart().subscribe(cart => {
+      this.products = cart.sortedProducts;
+      this.totalPrice = cart.totalPrice;
     });
   }
 
@@ -58,9 +62,10 @@ export class OrderComponent implements OnInit {
     });
   }
 
-  onSubmit(createOrderForm: NgForm) {
+  createOrder(createOrderForm: NgForm) {
+//this.orderService.createNewOrder(new Order(this.phoneNumber, this.addresses, this.items,));
 
-    createOrderForm.resetForm();
+createOrderForm.resetForm();
   }
 
   showCurrentAddress():string {

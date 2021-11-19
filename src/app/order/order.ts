@@ -1,14 +1,12 @@
-import {Product} from '../product/product';
+import {SortedProduct} from '../product/SortedProduct';
 
 export class Order{
-  owner: string;
   phoneNumber: string;
   address:string;
-  items:Product[];
+  items:SortedProduct[];
   amount:number;
 
-  constructor(owner: string, phoneNumber: string, address: string, items: Product[], amount: number) {
-    this.owner = owner;
+  constructor(phoneNumber: string, address: string, items: SortedProduct[], amount: number) {
     this.phoneNumber = phoneNumber;
     this.address = address;
     this.items = items;

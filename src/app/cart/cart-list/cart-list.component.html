@@ -16,20 +16,20 @@
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let item of items let i = index">
+        <tr  *ngFor="let product of products;let i = index">
           <th scope="row">{{i+1}}</th>
-          <td>{{item.article}}</td>
-          <td>{{item.name}}</td>
-          <td>{{item.countInStock}}</td>
-          <td>{{item.price}}</td>
+          <td>{{product.article}}</td>
+          <td>{{product.name}}</td>
+          <td>{{product.countInStock}}</td>
+          <td>{{product.price}}</td>
           <td>
-            <button (click)="decrementProduct(item)" type="button" class="btn-light btn-lg">-</button>
-            {{item.countSelected}}
-            <button (click)="incrementProduct(item)" type="button" class="btn-light btn-lg">+</button>
+            <button (click)="decrementProduct(product)" type="button" class="btn-light btn-lg">-</button>
+            {{product.countSelected}}
+            <button (click)="incrementProduct(product)" type="button" class="btn-light btn-lg">+</button>
           </td>
-          <td>{{item.summedPrice}} руб.</td>
+          <td>{{product.amount}} руб.</td>
           <td>
-            <button (click)="deleteFromCart(item)" type="button" class="btn btn-danger btn-lg">X</button>
+            <button (click)="deleteFromCart(product)" type="button" class="btn btn-danger btn-lg">X</button>
           </td>
         </tr>
         </tbody>

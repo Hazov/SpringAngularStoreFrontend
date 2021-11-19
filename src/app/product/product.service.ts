@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {Observable, Subject} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
-import {Product} from './product';
+import {SortedProduct} from './SortedProduct';
 import {GetProductsRequest} from '../payload/GetProductsRequest';
 
 @Injectable({
@@ -14,19 +14,19 @@ export class ProductService {
   }
 
 
-  getAllProductByCategory(currentPage, currentCategory): Observable<Product[]>{
+  getAllProductByCategory(currentPage, currentCategory): Observable<SortedProduct[]>{
     if(currentCategory === undefined) currentCategory = 'all';
     let productRequest = new GetProductsRequest(
       currentCategory, currentPage, Number(localStorage.getItem(`itemCountOnPage`))
     )
-    return this.httpClient.post<Product[]>(this.productURL, productRequest);
+    return this.httpClient.post<SortedProduct[]>(this.productURL, productRequest);
   }
 
-  createProduct(product: Product){
+  createProduct(product: SortedProduct){
     return this.httpClient.post(`${this.productURL + '/create'}`, product);
   }
 
-  removeProduct(product: Product) {
+  removeProduct(product: SortedProduct) {
      return this.httpClient.request('post', `${this.productURL + '/remove'}`, {body: product});
   }
 
