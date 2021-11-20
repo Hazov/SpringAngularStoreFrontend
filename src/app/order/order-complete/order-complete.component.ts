@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {OrderService} from '../order.service';
 
 @Component({
   selector: 'app-order-complete',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OrderCompleteComponent implements OnInit {
 
-  constructor() { }
+
+  constructor(private orderService: OrderService) { }
 
   ngOnInit(): void {
   }
 
+  checkResponse() {
+    let responseOK = this.orderService.responseOK;
+    console.log(responseOK);
+    return responseOK;
+  }
 }

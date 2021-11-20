@@ -15,6 +15,7 @@ import {JwtErrorInterceptor} from './auth/JwtErrorInterceptor';
 import {ProductPaginationComponent} from './product/product-pagination/product-pagination.component';
 import {OrderComponent} from './order/order.component';
 import {OrderCompleteComponent} from './order/order-complete/order-complete.component';
+import { OrderListComponent } from './order/order-list/order-list.component';
 
 
 
@@ -24,7 +25,8 @@ const appRoutes: Routes = [
   {path: 'cart', component: CartListComponent},
   {path: 'auth', component: AuthComponent},
   {path: 'order', component: OrderComponent},
-  {path: 'order/order-complete', component: OrderCompleteComponent}
+  {path: 'order/complete', component: OrderCompleteComponent},
+  {path: 'order/list', component: OrderListComponent}
 ];
 
 @NgModule({
@@ -39,6 +41,7 @@ const appRoutes: Routes = [
     ProductPaginationComponent,
     OrderComponent,
     OrderCompleteComponent,
+    OrderListComponent,
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
