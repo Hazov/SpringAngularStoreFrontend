@@ -4,6 +4,7 @@ import {OrderService} from './order.service';
 import {AddressService} from '../address/address.service';
 import {NgForm} from '@angular/forms';
 import {CartService} from '../cart/cart.service';
+import {CreateOrderRequest} from '../payload/CreateOrderRequest';
 
 
 @Component({
@@ -59,13 +60,15 @@ export class OrderComponent implements OnInit {
     this.hideAddAddressForm();
     this.addressService.addAddress(address).subscribe(data => {
       this.addresses = data;
+      this.chooseAddress(address);
     });
+
   }
 
   createOrder(createOrderForm: NgForm) {
-//this.orderService.createNewOrder(new Order(this.phoneNumber, this.addresses, this.items,));
-
-createOrderForm.resetForm();
+    this.orderService.createNewOrder(new CreateOrderRequest(this.phoneNumber, this.currentAddress));
+    this.currentAddress = undefined
+    createOrderForm.resetForm();
   }
 
   showCurrentAddress():string {

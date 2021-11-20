@@ -43,7 +43,7 @@
       </div>
       <br><br>
       +7<input type="text" class="bfh-phone" [(ngModel)]="phoneNumber" name="phoneNumber">
-      <a class="btn btn-primary btn-lg" role="button" aria-disabled="true" (click)="createOrder(createOrderForm)">ЗАКАЗАТЬ</a>
+      <a class="btn btn-primary btn-lg" role="button" aria-disabled="true" routerLink= "order-complete" (click)="createOrder(createOrderForm)">ЗАКАЗАТЬ</a>
     </form>
   </div>
   <div class="col-6">

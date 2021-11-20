@@ -1,11 +1,8 @@
-import {Component, Injectable, Input, OnInit, ViewChild} from '@angular/core';
+import {Component, Injectable,OnInit} from '@angular/core';
 import {SortedProduct} from '../SortedProduct';
 import {ProductService} from '../product.service';
 import {Category} from '../../category/category';
-import {CategoryService} from '../../category/category.service';
-import {map, tap} from 'rxjs/operators';
-import {ProductPaginationComponent} from '../product-pagination/product-pagination.component';
-import {CategoryListComponent} from '../../category/category-list/category-list.component';
+
 
 @Component({
   selector: 'app-product-list',
@@ -26,7 +23,7 @@ export class ProductListComponent implements OnInit {
   constructor(private productService: ProductService) { }
 
   ngOnInit(): void {
-
+    this.showAllProductsByCategory(1);
   }
 
     showAllProductsByCategory(page:number, category?:string){
@@ -53,7 +50,6 @@ export class ProductListComponent implements OnInit {
   }
 
   showNextPage(page: number) {
-    let prod;
     let category = this.currentCategory
     this.productService.getAllProductByCategory(page, category).subscribe(data =>{
       console.log(data)

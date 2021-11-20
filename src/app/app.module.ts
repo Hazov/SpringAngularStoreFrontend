@@ -1,32 +1,30 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-
-import { AppComponent } from './app.component';
-
-import { ProductListComponent } from './product/product-list/product-list.component';
+import {NgModule} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {AppComponent} from './app.component';
+import {ProductListComponent} from './product/product-list/product-list.component';
 import {RouterModule, Routes} from '@angular/router';
-import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from '@angular/common/http';
-import { ProductViewComponent } from './product/product-view/product-view.component';
-
-import { CategoryListComponent } from './category/category-list/category-list.component';
-
-import { CreateProductComponent } from './product/create-product/create-product.component';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import {ProductViewComponent} from './product/product-view/product-view.component';
+import {CategoryListComponent} from './category/category-list/category-list.component';
+import {CreateProductComponent} from './product/create-product/create-product.component';
 import {FormsModule} from '@angular/forms';
-import { CartListComponent } from './cart/cart-list/cart-list.component';
-import { AuthComponent } from './auth/auth.component';
+import {CartListComponent} from './cart/cart-list/cart-list.component';
+import {AuthComponent} from './auth/auth.component';
 import {TokenInterceptor} from './auth/TokenInterceptor';
 import {JwtErrorInterceptor} from './auth/JwtErrorInterceptor';
-import { ProductPaginationComponent } from './product/product-pagination/product-pagination.component';
-import { OrderComponent } from './order/order.component';
+import {ProductPaginationComponent} from './product/product-pagination/product-pagination.component';
+import {OrderComponent} from './order/order.component';
+import {OrderCompleteComponent} from './order/order-complete/order-complete.component';
 
 
-const appRoutes: Routes =[
-  { path: 'products', component: ProductListComponent},
-  { path: 'editProduct', component: CreateProductComponent },
-  { path: 'cart', component: CartListComponent},
-  { path: 'auth', component: AuthComponent},
-  { path: 'order', component: OrderComponent}
 
+const appRoutes: Routes = [
+  {path: 'products', component: ProductListComponent},
+  {path: 'editProduct', component: CreateProductComponent},
+  {path: 'cart', component: CartListComponent},
+  {path: 'auth', component: AuthComponent},
+  {path: 'order', component: OrderComponent},
+  {path: 'order/order-complete', component: OrderCompleteComponent}
 ];
 
 @NgModule({
@@ -40,6 +38,7 @@ const appRoutes: Routes =[
     AuthComponent,
     ProductPaginationComponent,
     OrderComponent,
+    OrderCompleteComponent,
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
@@ -49,12 +48,17 @@ const appRoutes: Routes =[
   ],
   exports: [RouterModule],
   providers: [
-    {provide: HTTP_INTERCEPTORS,
+    {
+      provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
-      multi: true},
-    {provide: HTTP_INTERCEPTORS,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
       useClass: JwtErrorInterceptor,
-      multi: true}],
+      multi: true
+    }],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

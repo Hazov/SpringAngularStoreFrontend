@@ -1,9 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs';
-import {CartService} from '../cart/cart.service';
-import {Order} from './order';
-
+import {CreateOrderRequest} from '../payload/CreateOrderRequest';
 
 
 @Injectable({
@@ -11,14 +8,15 @@ import {Order} from './order';
 })
 export class OrderService {
 
-  private ordersURL = 'http://localhost:8080/api/v1/order/';
+  private ordersURL = 'http://localhost:8080/api/v1/order';
 
 
   constructor(private httpClient: HttpClient) {
   }
 
 
-  createNewOrder(order:Order) {
+  createNewOrder(orderRequest:CreateOrderRequest) {
+      this.httpClient.post<void>(`${this.ordersURL + '/create'}`, orderRequest).subscribe();
 
   }
 }
