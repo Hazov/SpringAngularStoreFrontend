@@ -2,8 +2,10 @@ import {Component, OnInit} from '@angular/core';
 import {AuthService} from './auth.service';
 
 import {Credentials} from '../user/credentials';
-import {NewUserRequest} from '../payload/NewUserRequest';
+import {SignUpRequest} from '../payload/SignUpRequest';
 import {ForgotPasswordRequest} from '../payload/ForgotPasswordRequest';
+import {FormControl, FormGroup, NgForm, Validators} from '@angular/forms';
+
 
 
 @Component({
@@ -26,6 +28,11 @@ export class AuthComponent implements OnInit {
   fpEmail: string;
 
   constructor(private authService: AuthService) {
+    this.myForm = new FormGroup({
+      "regUsername": new FormControl("", [Validators.required, Validators.pattern("")]), // TODO ПИШЕМ REGEX
+      "regPassword": new FormControl("", [Validators.required, Validators.pattern("")]),
+      "regEmail": new FormControl("", [Validators.required, Validators.email])
+    });
   }
 
   ngOnInit(): void {
@@ -43,18 +50,32 @@ export class AuthComponent implements OnInit {
     });
   }
 
-  authanticate(regUsername: string, regPassword: string, regPasswordConfirm: string, regEmail: string): void {
-    if (regPassword == regPasswordConfirm) {
-      let newUser = new NewUserRequest(regUsername, regEmail, regPassword);
-      this.authService.authanticate(newUser).subscribe(data => {
-
-      });
-    }
+  authenticate(): void {
+    if (this.regEmail === undefined && this.regPassword === undefined && this.regUsername === undefined) return;
+    if (this.regPassword != this.regPasswordConfirm) return;
+    let newUser = new SignUpRequest(this.regUsername, this.regPassword, this.regEmail);
+    this.authService.authanticate(newUser).subscribe(data => {
+      console.log(data.message);
+    });
+    this.regEmail = undefined;
+    this.regPassword = undefined;
+    this.regUsername = undefined;
   }
-  forgotPassword(fpEmail:string){
+
+  forgotPassword(fpEmail: string) {
     this.authService.forgotPassword(new ForgotPasswordRequest(fpEmail)).subscribe(data => {
       console.log(data.message);
     })
   }
 
+
+  myForm: FormGroup;
+
+  submit() {
+    console.log(this.myForm);
+  }
+
 }
+
+
+

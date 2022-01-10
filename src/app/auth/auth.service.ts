@@ -3,7 +3,7 @@ import {Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {Credentials} from '../user/credentials';
 import {JwtResponse} from '../payload/JwtResponse';
-import {NewUserRequest} from '../payload/NewUserRequest';
+import {SignUpRequest} from '../payload/SignUpRequest';
 import {MessageResponse} from '../payload/MessageResponse';
 import {ForgotPasswordRequest} from '../payload/ForgotPasswordRequest';
 
@@ -25,7 +25,7 @@ export class AuthService {
     return this.httpClient.post<JwtResponse>(`${this.authorizeURL}`, credentials);
   }
 
-  public authanticate(newUser: NewUserRequest): Observable<MessageResponse> {
+  public authanticate(newUser: SignUpRequest): Observable<MessageResponse> {
     return this.httpClient.post<MessageResponse>(`${this.registrationURL}`, newUser);
   }
   public forgotPassword(forgotPass: ForgotPasswordRequest):Observable<MessageResponse> {

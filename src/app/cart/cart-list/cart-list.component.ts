@@ -34,6 +34,7 @@ export class CartListComponent implements OnInit {
   }
 
   decrementProduct(sortedProduct: SortedProduct) {
+    if(sortedProduct.countSelected === 1) return;
     let product = new Product(sortedProduct);
       this.cartService.decrementFromCart(product).subscribe(cart => {
         this.products = cart.sortedProducts;
@@ -42,6 +43,7 @@ export class CartListComponent implements OnInit {
   }
 
   incrementProduct(sortedProduct: SortedProduct) {
+    if(sortedProduct.countSelected > sortedProduct.countInStock-1) return;
     let product = new Product(sortedProduct);
     this.cartService.incrementFromCart(product).subscribe(cart=>{
       this.products = cart.sortedProducts;

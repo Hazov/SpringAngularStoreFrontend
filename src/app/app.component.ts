@@ -1,6 +1,5 @@
-import { Component } from '@angular/core';
-import {CartService} from './cart/cart.service';
-
+import {Component} from '@angular/core';
+import {UserService} from './user/user.service';
 
 
 @Component({
@@ -10,12 +9,21 @@ import {CartService} from './cart/cart.service';
 })
 
 export class AppComponent{
-  title = 'voronaFront';
+  title: string;
 
-  constructor(private cartService: CartService) { }
+  username: string;
 
-  ngOnInit(): void {
-
+  constructor(private userService: UserService) {
+    this.title = 'voronaFront';
   }
 
+  ngOnInit(): void {
+      this.getUsername();
+  }
+
+  private getUsername() {
+    this.userService.getUserName().subscribe(name=>{
+      this.username = name;
+    })
+  }
 }
