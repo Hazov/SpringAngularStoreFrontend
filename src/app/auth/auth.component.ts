@@ -13,7 +13,7 @@ import {ForgotPasswordRequest} from '../payload/ForgotPasswordRequest';
 })
 export class AuthComponent implements OnInit {
 //authorization
-  username: string;
+  email: string;
   password: string;
 
   //registration
@@ -31,8 +31,8 @@ export class AuthComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  authorize(username: string, password: string): void {
-    let credentials = new Credentials(username, password);
+  authorize(email: string, password: string): void {
+    let credentials = new Credentials(email, password);
     this.authService.authorize(credentials).subscribe(data => {
       localStorage.setItem('name', data.username);
       localStorage.setItem('token', data.token);
@@ -43,9 +43,9 @@ export class AuthComponent implements OnInit {
     });
   }
 
-  authanticate(regUsername: string, regPassword: string, regPasswordConfirm: string, regEmail: string): void {
+  authenticate(regEmail: string, regPassword: string, regPasswordConfirm: string, regUsername: string): void {
     if (regPassword == regPasswordConfirm) {
-      let newUser = new NewUserRequest(regUsername, regEmail, regPassword);
+      let newUser = new NewUserRequest(regEmail, regPassword, regUsername);
       this.authService.authanticate(newUser).subscribe(data => {
 
       });

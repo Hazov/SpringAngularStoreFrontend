@@ -8,7 +8,7 @@
         <div class="login-group">
           <div class="form-group">
             <label for="lg_username" class="sr-only">Username</label>
-            <input [(ngModel)]="username" type="text" class="form-control" id="lg_username" name="lg_username" placeholder="Имя пользователя">
+            <input [(ngModel)]="email" type="text" class="form-control" id="lg_username" name="lg_username" placeholder="Имя пользователя">
           </div>
           <div class="form-group">
             <label for="lg_password" class="sr-only">Password</label>
@@ -18,7 +18,7 @@
             <input type="checkbox" id="lg_remember" name="lg_remember">
           </div>
         </div>
-        <button (click)="authorize(username, password)" type="submit" class="login-button"><i class="fa fa-chevron-right"></i></button>
+        <button (click)="authorize(email, password)" type="submit" class="login-button"><i class="fa fa-chevron-right"></i></button>
       </div>
       <div class="etc-login-form">
         <p>Забыли пароль? <a href="#">Нажмите сюда</a></p>
@@ -57,7 +57,7 @@
           </div>
 
         </div>
-        <button (click)="authanticate(regUsername, regPassword, regPasswordConfirm, regEmail)" type="submit" class="login-button"><i class="fa fa-chevron-right"></i></button>
+        <button (click)="authenticate(regEmail,regPassword,regPasswordConfirm,regUsername )" type="submit" class="login-button"><i class="fa fa-chevron-right"></i>|</button>
       </div>
       <div class="etc-login-form">
         <p>Уже зарегистрированы? <a href="#">Войдите</a></p>

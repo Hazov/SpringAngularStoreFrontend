@@ -21,11 +21,12 @@ export class AuthService {
   }
 
   public authorize(credentials: Credentials): Observable<JwtResponse> {
-
+    console.log(credentials)
     return this.httpClient.post<JwtResponse>(`${this.authorizeURL}`, credentials);
   }
 
   public authanticate(newUser: NewUserRequest): Observable<MessageResponse> {
+    console.log(newUser)
     return this.httpClient.post<MessageResponse>(`${this.registrationURL}`, newUser);
   }
   public forgotPassword(forgotPass: ForgotPasswordRequest):Observable<MessageResponse> {

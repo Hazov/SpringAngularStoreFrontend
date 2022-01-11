@@ -1,15 +1,15 @@
 
 
 export class NewUserRequest{
-  private login: string;
-  private _email: string;
+  private email: string;
   private pass: string;
+  private name: string;
 
 
-  constructor(login: string, email: string, pass: string) {
-    this.login = login;
-    this._email = email;
+  constructor(email: string, pass: string, name: string) {
+    this.email = email;
     this.pass = pass;
+    this.name = name;
   }
 
 }
