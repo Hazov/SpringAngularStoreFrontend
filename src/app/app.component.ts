@@ -11,11 +11,17 @@ import {CartService} from './cart/cart.service';
 
 export class AppComponent{
   title = 'voronaFront';
+  entered = false;
 
-  constructor(private cartService: CartService) { }
+  constructor() { }
 
   ngOnInit(): void {
 
+  }
+
+  unlogin(){
+    localStorage.setItem("name", "")
+    localStorage.setItem("token", "")
   }
 
 }

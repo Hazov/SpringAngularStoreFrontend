@@ -46,7 +46,7 @@ export class AuthComponent implements OnInit {
   authenticate(regEmail: string, regPassword: string, regPasswordConfirm: string, regUsername: string): void {
     if (regPassword == regPasswordConfirm) {
       let newUser = new NewUserRequest(regEmail, regPassword, regUsername);
-      this.authService.authanticate(newUser).subscribe(data => {
+      this.authService.authenticate(newUser).subscribe(data => {
 
       });
     }

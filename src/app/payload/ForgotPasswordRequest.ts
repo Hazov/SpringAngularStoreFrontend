@@ -5,7 +5,4 @@ export class ForgotPasswordRequest {
   constructor(email:string) {
     this.email = email;
   }
-
-
-
 }
