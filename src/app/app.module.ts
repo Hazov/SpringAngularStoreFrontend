@@ -7,7 +7,7 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {ProductViewComponent} from './product/product-view/product-view.component';
 import {CategoryListComponent} from './category/category-list/category-list.component';
 import {CreateProductComponent} from './product/create-product/create-product.component';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {CartListComponent} from './cart/cart-list/cart-list.component';
 import {AuthComponent} from './auth/auth.component';
 import {TokenInterceptor} from './auth/TokenInterceptor';
@@ -17,6 +17,7 @@ import {OrderComponent} from './order/order.component';
 import {OrderCompleteComponent} from './order/order-complete/order-complete.component';
 import { OrderListComponent } from './order/order-list/order-list.component';
 import { ForgotPassComponent } from './forgot-pass/forgot-pass.component';
+
 
 
 
@@ -50,12 +51,13 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     BrowserModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   exports: [RouterModule],
   providers: [
     {
-      provide: HTTP_INTERCEPTORS,
+      provide: {HTTP_INTERCEPTORS},
       useClass: TokenInterceptor,
       multi: true
     },
