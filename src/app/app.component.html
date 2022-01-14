@@ -23,7 +23,11 @@
         <a class="nav-link active" aria-current="page" routerLink="cart">Корзина</a>
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-success" type="submit">Поиск</button>
-        <a class="nav-link active" aria-current="page" routerLink="auth">Войти/регистрация</a>
+
+        <!--switch-->
+        <a *ngIf="entered" (click)="leave()" class="nav-link active" aria-current="page" routerLink="auth">Выйти</a>
+        <a *ngIf="!entered" class="nav-link active" aria-current="page" routerLink="auth">Войти/регистрация</a>
+
       </form>
     </div>
   </div>

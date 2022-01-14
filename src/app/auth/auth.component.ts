@@ -2,10 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {AuthService} from './auth.service';
 
 import {Credentials} from '../user/credentials';
-import {SignUpRequest} from '../payload/SignUpRequest';
+import {NewUserRequest} from '../payload/NewUserRequest';
 import {ForgotPasswordRequest} from '../payload/ForgotPasswordRequest';
-import {FormControl, FormGroup, NgForm, Validators} from '@angular/forms';
-
 
 
 @Component({
@@ -15,7 +13,7 @@ import {FormControl, FormGroup, NgForm, Validators} from '@angular/forms';
 })
 export class AuthComponent implements OnInit {
 //authorization
-  username: string;
+  email: string;
   password: string;
 
   //registration
@@ -28,54 +26,35 @@ export class AuthComponent implements OnInit {
   fpEmail: string;
 
   constructor(private authService: AuthService) {
-    this.myForm = new FormGroup({
-      "regUsername": new FormControl("", [Validators.required, Validators.pattern("")]), // TODO ПИШЕМ REGEX
-      "regPassword": new FormControl("", [Validators.required, Validators.pattern("")]),
-      "regEmail": new FormControl("", [Validators.required, Validators.email])
-    });
   }
 
   ngOnInit(): void {
   }
 
-  authorize(username: string, password: string): void {
-    let credentials = new Credentials(username, password);
+  authorize(email: string, password: string): void {
+    let credentials = new Credentials(email, password);
     this.authService.authorize(credentials).subscribe(data => {
       localStorage.setItem('name', data.username);
       localStorage.setItem('token', data.token);
       console.log('ИМЯ' + data.username);
       console.log('Я ПОЛУЧИЛ ТОКЕН: ' + data.token);
-      document.getElementById('lg_username').innerText = '';
+      document.getElementById('lg_email').innerText = '';
       document.getElementById('lg_password').innerText = '';
     });
   }
 
-  authenticate(): void {
-    if (this.regEmail === undefined && this.regPassword === undefined && this.regUsername === undefined) return;
-    if (this.regPassword != this.regPasswordConfirm) return;
-    let newUser = new SignUpRequest(this.regUsername, this.regPassword, this.regEmail);
-    this.authService.authanticate(newUser).subscribe(data => {
-      console.log(data.message);
-    });
-    this.regEmail = undefined;
-    this.regPassword = undefined;
-    this.regUsername = undefined;
-  }
+  authenticate(regEmail: string, regPassword: string, regPasswordConfirm: string, regUsername: string): void {
+    if (regPassword == regPasswordConfirm) {
+      let newUser = new NewUserRequest(regEmail, regPassword, regUsername);
+      this.authService.authenticate(newUser).subscribe(data => {
 
-  forgotPassword(fpEmail: string) {
+      });
+    }
+  }
+  forgotPassword(fpEmail:string){
     this.authService.forgotPassword(new ForgotPasswordRequest(fpEmail)).subscribe(data => {
       console.log(data.message);
     })
   }
 
-
-  myForm: FormGroup;
-
-  submit() {
-    console.log(this.myForm);
-  }
-
 }
-
-
-

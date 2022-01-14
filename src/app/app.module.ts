@@ -16,6 +16,8 @@ import {ProductPaginationComponent} from './product/product-pagination/product-p
 import {OrderComponent} from './order/order.component';
 import {OrderCompleteComponent} from './order/order-complete/order-complete.component';
 import { OrderListComponent } from './order/order-list/order-list.component';
+import { ForgotPassComponent } from './forgot-pass/forgot-pass.component';
+
 
 
 
@@ -27,7 +29,8 @@ const appRoutes: Routes = [
   {path: 'auth', component: AuthComponent},
   {path: 'order', component: OrderComponent},
   {path: 'order/complete', component: OrderCompleteComponent},
-  {path: 'order/list', component: OrderListComponent}
+  {path: 'order/list', component: OrderListComponent},
+  {path: 'remind', component: ForgotPassComponent}
 ];
 
 @NgModule({
@@ -43,6 +46,7 @@ const appRoutes: Routes = [
     OrderComponent,
     OrderCompleteComponent,
     OrderListComponent,
+    ForgotPassComponent,
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
@@ -54,7 +58,7 @@ const appRoutes: Routes = [
   exports: [RouterModule],
   providers: [
     {
-      provide: {HTTP_INTERCEPTORS},
+      provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
       multi: true
     },

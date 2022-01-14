@@ -1,5 +1,6 @@
-import {Component} from '@angular/core';
-import {UserService} from './user/user.service';
+import { Component } from '@angular/core';
+import {CartService} from './cart/cart.service';
+
 
 
 @Component({
@@ -9,21 +10,19 @@ import {UserService} from './user/user.service';
 })
 
 export class AppComponent{
-  title: string;
+  title = 'voronaFront';
+  entered = false;
 
-  username: string;
-
-  constructor(private userService: UserService) {
-    this.title = 'voronaFront';
-  }
+  constructor() { }
 
   ngOnInit(): void {
-      this.getUsername();
+
   }
 
-  private getUsername() {
-    this.userService.getUserName().subscribe(name=>{
-      this.username = name;
-    })
+  leave(){
+    localStorage.setItem("name", "")
+    localStorage.setItem("token", "")
+    this.entered = false;
   }
+
 }
