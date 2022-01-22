@@ -29,7 +29,7 @@ export class CategoryListComponent implements OnInit {
 
   chooseCategory(cat?: string): void {
     this.productList.showAllProductsByCategory(1,cat);
-    this.productList.showPages(cat)
+    //this.productList.showPages(cat)
     this.currentCategory = cat;
     this.productList.currentCategory = this.currentCategory;
   }

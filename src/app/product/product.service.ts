@@ -3,6 +3,7 @@ import {Observable, Subject} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {SortedProduct} from './SortedProduct';
 import {GetProductsRequest} from '../payload/GetProductsRequest';
+import {ProductsPageResponse} from '../payload/ProductsPageResponse';
 
 @Injectable({
   providedIn: 'root'
@@ -14,12 +15,13 @@ export class ProductService {
   }
 
 
-  getAllProductByCategory(currentPage, currentCategory): Observable<SortedProduct[]>{
+  getAllProductByCategory(currentPage, currentCategory): Observable<ProductsPageResponse>{
+    //TODO проверка уровнем выше
     if(currentCategory === undefined) currentCategory = 'all';
     let productRequest = new GetProductsRequest(
       currentCategory, currentPage, Number(localStorage.getItem(`itemCountOnPage`))
     )
-    return this.httpClient.post<SortedProduct[]>(this.productURL, productRequest);
+    return this.httpClient.post<ProductsPageResponse>(this.productURL, productRequest);
   }
 
   createProduct(product: SortedProduct){
@@ -30,23 +32,5 @@ export class ProductService {
      return this.httpClient.request('post', `${this.productURL + '/remove'}`, {body: product});
   }
 
-  getCountOfProducts(category?:string) {
-    if(category === undefined) category = 'all'
-    return this.httpClient.get<number>(`${this.productURL + '/count/' + category}`)
-  }
-
-  getPages(data: number): number {
-    let pagesCount = 0;
-    let itemOnPage = Number(localStorage.getItem(`itemCountOnPage`));
-    if(itemOnPage > 0){
-      if(data >= itemOnPage)
-        pagesCount = data / itemOnPage;
-      pagesCount = Math.floor(pagesCount);
-      let remainder = data % itemOnPage;
-      if(remainder > 0)
-        pagesCount+=1;
-    }
-    return pagesCount;
-  }
 }
 

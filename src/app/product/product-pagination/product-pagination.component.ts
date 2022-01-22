@@ -27,9 +27,8 @@ import {ProductListComponent} from '../product-list/product-list.component';
 })
 export class ProductPaginationComponent implements OnInit {
   @Input() pages: number[];
-
-  @ViewChild("pageNumb", {static: false})
-  pageNumb: ElementRef | undefined;
+  @Input() current: number;
+  @Input() count: number;
 
   constructor(private productService: ProductService, private productListComponent: ProductListComponent) {
   }
@@ -38,10 +37,8 @@ export class ProductPaginationComponent implements OnInit {
     localStorage.setItem(`itemCountOnPage`, '3')
   }
 
-  showNextPage(offset: number) {
-    this.productListComponent.showNextPage(offset)
+  showSpecifiedPage(page: number) {
+    this.productListComponent.showSpecifiedPage(page)
 
   }
-
-
 }

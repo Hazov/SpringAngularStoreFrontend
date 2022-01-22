@@ -1,9 +1,12 @@
 <body>
 <nav aria-label="...">
   <ul  class="pagination pagination-lg">
-    <li *ngFor="let page of pages"  class="page-item">
-      <a class="page-link cursorpointer"  (click)="showNextPage(page+1)">{{page+1}}</a>
-    </li>
+    <div *ngIf="pages.length<5">
+      <li  *ngFor="let page of pages"  class="page-item">
+        <a class="page-link cursorpointer"  (click)="showSpecifiedPage(page)">{{page+1}}</a>
+      </li>
+    </div>
+
   </ul>
 </nav>
 </body>
