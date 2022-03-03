@@ -56,24 +56,27 @@ export class ProductListComponent implements OnInit {
 
 
   updatePagesButtons() {
-    console.log(this.currentPage)
     this.pagesButtons = [];
-    if (this.pagesCount > 0){
+    if (this.pagesCount > 0) {
       if (this.pagesCount < 5) {
-        for (let i = 0; i < this.pagesCount; i++)
+        for (let i = 0; i < this.pagesCount; i++) {
           this.pagesButtons[i] = i;
+        }
       } else {
         const LAST = this.pagesCount - 1;
-        switch (this.currentPage){
-          case 1: this.pagesButtons = [1, 2, '>', LAST]; break;
-          case 2: this.pagesButtons = [1, this.currentPage, '>', LAST]; break;
-          case this.pagesCount - 1: this.pagesButtons = [1, '<', this.currentPage, LAST]; break;
-          default: this.pagesButtons = [1, '<', this.currentPage, '>', LAST];
+        switch (this.currentPage) {
+          case 1:
+            this.pagesButtons = [1, 2, '>', LAST];break;
+          case 2:
+            this.pagesButtons = [1, this.currentPage, '>', LAST];break;
+          case this.pagesCount - 1:
+            this.pagesButtons = [1, '<', this.currentPage, LAST];break;
+          default:
+            this.pagesButtons = [1, '<', this.currentPage, '>', LAST];
         }
       }
     }
   }
-
 
   setTab(n: number): void {
     this.tabs = n;

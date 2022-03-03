@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {Category} from '../../category/category';
 import {CategoryService} from '../../category/category.service';
 import {NgForm} from '@angular/forms';
@@ -15,12 +15,15 @@ export class CreateProductComponent implements OnInit {
   products: SortedProduct[];
   productToDelete: SortedProduct;
 
+
   article: string;
   name: string;
   price: number;
   description: string;
   count: number;
-  category: Category
+  category: Category;
+
+  file:File;
 
   constructor(private categoryService: CategoryService, private productService: ProductService) {
   }
@@ -64,5 +67,26 @@ export class CreateProductComponent implements OnInit {
     this.productService.removeProduct(this.productToDelete).subscribe(data => this.ngOnInit());
     form.reset();
 
+  }
+
+  fileBrowserHandler(event) {
+    console.log("Файл пошел")
+    let file = event.target.file;
+    if(file.length > 0) {
+      let formData:FormData = new FormData();
+      formData.append('uploadFile', file, file.name);
+      console.log("Файл поfdшел")
+    }
+  }
+
+  sendFile() {
+    if(this.file){
+      this.productService.sendProductsFile(this.file).subscribe(data=>console.log(data));
+    }
+
+  }
+
+  refresh() {
+    this.file = undefined;
   }
 }

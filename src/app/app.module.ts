@@ -17,6 +17,9 @@ import {OrderComponent} from './order/order.component';
 import {OrderCompleteComponent} from './order/order-complete/order-complete.component';
 import { OrderListComponent } from './order/order-list/order-list.component';
 import { ForgotPassComponent } from './forgot-pass/forgot-pass.component';
+import { DndDirective } from './diretives/dnd/dnd.directive';
+import {DropZoneDirective} from './diretives/dnd/dropzone.directive';
+
 
 
 
@@ -47,6 +50,8 @@ const appRoutes: Routes = [
     OrderCompleteComponent,
     OrderListComponent,
     ForgotPassComponent,
+    DndDirective,
+    DropZoneDirective,
   ],
   imports: [
     RouterModule.forRoot(appRoutes),

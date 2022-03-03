@@ -18,7 +18,7 @@
         </li>
       </ul>
       <form class="d-flex">
-        <a class="nav-link active" aria-current="page" routerLink="editProduct">Админка</a>
+        <a *ngIf="admin" class="nav-link active" aria-current="page" routerLink="editProduct">Админка</a>
         <a class="nav-link active" aria-current="page" routerLink="order/list">Мои заказы</a>
         <a class="nav-link active" aria-current="page" routerLink="cart">Корзина</a>
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">

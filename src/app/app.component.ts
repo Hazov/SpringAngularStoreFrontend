@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {CartService} from './cart/cart.service';
+import {AuthService} from './auth/auth.service';
 
 
 
@@ -12,11 +12,13 @@ import {CartService} from './cart/cart.service';
 export class AppComponent{
   title = 'voronaFront';
   entered = false;
+  admin: boolean;
 
-  constructor() { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
-
+    this.admin = true;
+    //this.isAdmin();
   }
 
   leave(){
@@ -25,4 +27,13 @@ export class AppComponent{
     this.entered = false;
   }
 
+  isAdmin() {
+    this.authService.isAdmin().subscribe(data => {
+      this.admin = data.valueOf();
+      console.log("isAdmin: ");
+      console.log(this.admin);
+      return this.admin;
+    });
+
+  }
 }

@@ -1,12 +1,52 @@
 <body>
+<!--Создание нового товара-->
 <div class="row">
   <div class="col-6">
+
+
+
+
+
+
+
+
+
     <h1>Создать новый товар</h1>
+    <h2>Из файла</h2>
+
+
+    <!--  DragAndDrop-->
+    <div class="dropzone" appDropZone (fileChange)="file = $event">
+      <input type="file" id="fileDropRef" accept=".csv" />
+      <img *ngIf="!file" src="assets/images/system/cloud-computing.png" alt="">
+      <h3 *ngIf="file">{{file.name}}</h3>
+      <div *ngIf="!file">
+        <h6>Перетащите сюда файл</h6>
+        <h6>или</h6>
+        <label class="browse" for="fileDropRef">Найти файл на компьютере</label>
+      </div>
+
+    </div>
+    <div *ngIf="file">
+      <button class="btn btn-secondary" (click)="sendFile()">Отправить</button>
+      <button class="btn btn-secondary" (click)="refresh()">Очистить</button>
+    </div>
+
+
+    <br>
+    <br>
+    <br>
+
+
+
+
+
     <form #createFormProduct="ngForm" class="needs-validation" novalidate>
       <div class="form-row form-group">
         <div class="col-md-6 mb-3">
-          <label>Артикул</label>
+          <label> Артикул
           <input type="text" class="form-control" name="article" [(ngModel)]="article"  placeholder="Артикул товара" required>
+          </label>
           <div class="valid-feedback">
             Looks good!
           </div>
@@ -81,6 +121,11 @@
   </div>
 </div>
 </body>
+
+
+
+
+
 
 
 

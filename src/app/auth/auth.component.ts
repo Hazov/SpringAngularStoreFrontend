@@ -4,6 +4,7 @@ import {AuthService} from './auth.service';
 import {Credentials} from '../user/credentials';
 import {NewUserRequest} from '../payload/NewUserRequest';
 import {ForgotPasswordRequest} from '../payload/ForgotPasswordRequest';
+import {AppComponent} from '../app.component';
 
 
 @Component({
@@ -25,7 +26,7 @@ export class AuthComponent implements OnInit {
   //forgot password
   fpEmail: string;
 
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService, private app: AppComponent) {
   }
 
   ngOnInit(): void {
@@ -34,6 +35,8 @@ export class AuthComponent implements OnInit {
   authorize(email: string, password: string): void {
     let credentials = new Credentials(email, password);
     this.authService.authorize(credentials).subscribe(data => {
+      this.app.entered = true;
+      this.app.isAdmin();
       localStorage.setItem('name', data.username);
       localStorage.setItem('token', data.token);
       console.log('ИМЯ' + data.username);
@@ -47,7 +50,7 @@ export class AuthComponent implements OnInit {
     if (regPassword == regPasswordConfirm) {
       let newUser = new NewUserRequest(regEmail, regPassword, regUsername);
       this.authService.authenticate(newUser).subscribe(data => {
-
+            //TODO
       });
     }
   }

@@ -4,6 +4,7 @@ import {HttpClient} from '@angular/common/http';
 import {SortedProduct} from './SortedProduct';
 import {GetProductsRequest} from '../payload/GetProductsRequest';
 import {ProductsPageResponse} from '../payload/ProductsPageResponse';
+import {MessageResponse} from '../payload/MessageResponse';
 
 @Injectable({
   providedIn: 'root'
@@ -14,23 +15,25 @@ export class ProductService {
   constructor(private httpClient: HttpClient) {
   }
 
-
   getAllProductByCategory(currentPage, currentCategory): Observable<ProductsPageResponse>{
-    //TODO проверка уровнем выше
-    if(currentCategory === undefined) currentCategory = 'all';
-    let productRequest = new GetProductsRequest(
-      currentCategory, currentPage, Number(localStorage.getItem(`itemCountOnPage`))
-    )
+    let itemCountOnPage = Number(localStorage.getItem(`itemCountOnPage`));
+    let productRequest = new GetProductsRequest(currentCategory, currentPage, itemCountOnPage);
     return this.httpClient.post<ProductsPageResponse>(this.productURL, productRequest);
   }
 
   createProduct(product: SortedProduct){
-    return this.httpClient.post(`${this.productURL + '/create'}`, product);
+    return this.httpClient.post(this.productURL + '/create', product);
   }
 
   removeProduct(product: SortedProduct) {
-     return this.httpClient.request('post', `${this.productURL + '/remove'}`, {body: product});
+    return this.httpClient.post<MessageResponse>(this.productURL + '/remove', product);
   }
 
+  sendProductsFile(file : File):Observable<MessageResponse> {
+    let formData = new FormData();
+    formData.append('file', file);
+    return this.httpClient.post<MessageResponse>(this.productURL + '/create-from-csv', formData);
+
+  }
 }
 
