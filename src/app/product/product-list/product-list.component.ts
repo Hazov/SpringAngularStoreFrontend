@@ -27,8 +27,8 @@ export class ProductListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.showAllProductsByCategory(1);
     this.currentPage = 1;
+    this.showAllProductsByCategory(this.currentPage);
   }
 
   showSpecifiedPage(page: any) {
@@ -48,6 +48,7 @@ export class ProductListComponent implements OnInit {
       category = 'all';
     }
     this.productService.getAllProductByCategory(page, category).subscribe(data => {
+
       this.products = data.products;
       this.pagesCount = data.pagesCount;
       this.updatePagesButtons();

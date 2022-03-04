@@ -21,8 +21,7 @@
         <a *ngIf="admin" class="nav-link active" aria-current="page" routerLink="editProduct">Админка</a>
         <a class="nav-link active" aria-current="page" routerLink="order/list">Мои заказы</a>
         <a class="nav-link active" aria-current="page" routerLink="cart">Корзина</a>
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Поиск</button>
+        <app-search></app-search>
 
         <!--switch-->
         <a *ngIf="entered" (click)="leave()" class="nav-link active" aria-current="page" routerLink="auth">Выйти</a>

@@ -2,20 +2,11 @@
 <!--Создание нового товара-->
 <div class="row">
   <div class="col-6">
-
-
-
-
-
-
-
-
-
     <h1>Создать новый товар</h1>
-    <h2>Из файла</h2>
+    <br><h2>Из файла</h2><br>
 
 
-    <!--  DragAndDrop-->
+    <!--  DragAndDrop CSV File-->
     <div class="dropzone" appDropZone (fileChange)="file = $event">
       <input type="file" id="fileDropRef" accept=".csv" />
       <img *ngIf="!file" src="assets/images/system/cloud-computing.png" alt="">
@@ -25,22 +16,15 @@
         <h6>или</h6>
         <label class="browse" for="fileDropRef">Найти файл на компьютере</label>
       </div>
-
     </div>
     <div *ngIf="file">
       <button class="btn btn-secondary" (click)="sendFile()">Отправить</button>
       <button class="btn btn-secondary" (click)="refresh()">Очистить</button>
     </div>
 
+    <br><h2>Вручную</h2><br>
 
-    <br>
-    <br>
-    <br>
-
-
-
-
-
+<!--    Create manually-->
     <form #createFormProduct="ngForm" class="needs-validation" novalidate>
       <div class="form-row form-group">
         <div class="col-md-6 mb-3">
@@ -66,7 +50,6 @@
             <a *ngFor="let cat of categories" (click)="changeCategory(cat)" class="dropdown-item">{{cat.name}}</a>
           </div>
         </div>
-
       </div>
       <div class="col-md-4 mb-3">
         <label>Стоимость</label>
@@ -86,9 +69,11 @@
           Looks good!
         </div>
       </div>
-
       <button class="btn btn-primary" type="submit" (click)="onSubmit(createFormProduct)">Создать товар</button>
     </form>
+
+
+<!--delete product-->
   </div>
   <div class="col-6">
     <h1>Удалить товар</h1>
@@ -116,7 +101,6 @@
           <button class="btn btn-danger" type="submit" (click)="removeFromList(deleteProductForm)">Удалить товар</button>
         </div>
       </div>
-
     </form>
   </div>
 </div>

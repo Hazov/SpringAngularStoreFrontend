@@ -1,0 +1,11 @@
+<input #searchBox (keyup)="searchProducts(searchBox.value)"  class="form-control me-2" type="search" placeholder="Поиск по магазину" aria-label="Search" >
+<div class="ts_cont_wrap">
+  <ul class="me-auto mb-2 mb-lg-0">
+    <li  *ngFor="let pr of items$  | async let i = index">
+      <app-main-search-item [numb]="i" [product]="pr"></app-main-search-item>
+    </li>
+  </ul>
+</div>
+
+
+

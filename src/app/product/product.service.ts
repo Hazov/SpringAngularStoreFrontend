@@ -5,6 +5,7 @@ import {SortedProduct} from './SortedProduct';
 import {GetProductsRequest} from '../payload/GetProductsRequest';
 import {ProductsPageResponse} from '../payload/ProductsPageResponse';
 import {MessageResponse} from '../payload/MessageResponse';
+import {Product} from './Product';
 
 @Injectable({
   providedIn: 'root'
@@ -35,5 +36,10 @@ export class ProductService {
     return this.httpClient.post<MessageResponse>(this.productURL + '/create-from-csv', formData);
 
   }
+
+  searchProducts(term: string) : Observable<Product[]> {
+    return this.httpClient.get<Product[]>(`${this.productURL + '/searchProducts/?' + 'term=' + term}`);
+  }
+
 }
 

@@ -1,0 +1,17 @@
+.ts_cont_wrap {
+  position: absolute;
+  z-index: 800;
+  overflow: hidden;
+  width: 500px;
+  box-sizing: border-box;
+  margin-left: -260px;
+
+
+}
+li{
+  list-style-type: none;
+}
+
+ul{
+  padding-left: 0px;
+}

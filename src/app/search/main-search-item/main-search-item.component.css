@@ -1,0 +1,19 @@
+.productImage{
+  height: 45px;
+}
+.card:hover{
+  background: #97e8ff;
+}
+
+
+.card{
+  margin-bottom: 10px;
+  margin-top:10px;
+}
+.card-image{
+  margin-left: 50px;
+}
+.modal-header{
+  background-color: #2a2a2a;
+}
+
